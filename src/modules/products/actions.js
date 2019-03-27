@@ -30,6 +30,12 @@ export type CreateProductAction = {
   payload: string
 }
 
+export type SetActiveArticleAction = {
+  type: typeof at.SET_ACTIVE_ARTICLE,
+  meta: { identifier:Identifier },
+  payload: Number
+}
+
 export type Action = 
   FetchProductSuccessAction
   | FetchProductFailureAction
@@ -41,6 +47,12 @@ export const setFilterValue = (filter:Filter, filterKey:FilterKey, filterOption:
   type: at.SET_FILTER_VALUE,
   meta: {filter, filterKey},
   payload: filterOption
+})
+
+export const setActiveArticle = (identifier:Identifier, number:Number):SetActiveArticleAction => ({
+  type: at.SET_ACTIVE_ARTICLE,
+  meta: { identifier },
+  payload: number
 })
 
 const fetchSuccess = (number:Number, identifier:Identifier, result:Article[], translateFilters:boolean):FetchProductSuccessAction => ({

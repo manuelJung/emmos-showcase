@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import type {RootState as State, Dispatch} from 'store/reducers' // eslint-disable-line no-unused-vars
 import type {Identifier, Article, Number} from '../entities'
 import {isFetching, getFetchError, shouldCreate, getDisplayArticle} from '../selectors'
-import {createProduct as create} from '../actions'
+import {createProduct as create, setActiveArticle} from '../actions'
 
 type InjectedProps = {
   displayArticle: {
@@ -13,6 +13,7 @@ type InjectedProps = {
     isFetching: boolean,
     fetchError: null | string,
     shouldCreate: boolean,
+    setActiveArticle: (number:Number) => mixed,
     create: () => void // autocalled
   }
 }
@@ -32,14 +33,15 @@ const mapState = (state, props) => ({
   shouldCreate: shouldCreate(state.products, props.identifier, props.number)
 })
 
-const mapDispatch = { create }
+const mapDispatch = { create, setActiveArticle }
 
 const mergeProps = (sp, dp, props) => Object.assign({}, props, {
-  page: Object.assign({}, sp, {
+  displayArticle: Object.assign({}, sp, {
     create: () => {
       if(!props.number) return
       dp.create(props.number, props.identifier)
-    }
+    },
+    setActiveArticle: (number:Number) => dp.setActiveArticle(props.identifier, number)
   })
 })
 

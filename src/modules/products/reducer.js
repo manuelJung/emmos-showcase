@@ -121,6 +121,16 @@ export default function reducer(state:State=defaultState, action:Action):State {
       return newState
     }
 
+    case at.SET_ACTIVE_ARTICLE: {
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          [action.meta.identifier]: getFiltersFromArticle(state, action.payload)
+        }
+      }
+    }
+
     default: return state
   }
 }
