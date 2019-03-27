@@ -1,7 +1,7 @@
 // @flow
 import * as at from './const'
 import {shouldFetch} from './selectors'
-import type {RootState} from '../../store/rootReducer'
+import type {RootState} from 'store/reducers'
 import * as api from './utils/api'
 
 import type {Article, FilterKey, Filter, FilterOption, Identifier, Number} from './entities'
