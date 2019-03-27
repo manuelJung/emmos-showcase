@@ -55,7 +55,7 @@ const options = {
 export const hoc = /*:: <Config:InjectedProps>*/(Comp/*:: :React.AbstractComponent<Config> */) /*:: : React.AbstractComponent<$Diff<Config, $Shape<InjectedProps>>>*/ => // $FlowFixMe
 connect/*:: <Config&InjectedProps, OwnProps, _, _, State, Dispatch>*/(mapState,mapDispatch,mergeProps,options)(Comp)
 
-export default hoc(class DisplayArticleRenderer extends React.Component<OwnProps&InjectedProps&{
+export default hoc(class FilterRenderer extends React.Component<OwnProps&InjectedProps&{
   pure?:boolean,
   children?:(props:$PropertyType<InjectedProps,"filter">)=>React.Node
 }> {

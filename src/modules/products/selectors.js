@@ -63,6 +63,18 @@ export const getFilter:(state:State,pId:Identifier,filterKey:FilterKey) => Filte
   }
 )((_,pId,filterKey) => `${pId}:${filterKey}`)
 
+/*
+  -- ATTRIBUTE SELECTORS --
+*/
+
+export const getDisplayPrice:(state:State, pId:Identifier)=>number = createReSelector(
+  getFilteredArticles,
+  articles => {
+    // TODO: implement logic
+    return articles[0] ? articles[0].price : 0
+  }
+)((_,pId) => pId)
+
 // UTILS
 
 const calcFilterType = (options:FilterOption[]) => {
