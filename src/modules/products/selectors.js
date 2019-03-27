@@ -15,6 +15,10 @@ export const shouldFetch = (state:State,pId:Identifier):boolean => {
   const productNumber = state.numberToProductNumber[number]
   return Boolean(state.articles[productNumber])
 }
+export const shouldCreate = (state:State,pId:Identifier, number?:Number) => {
+  if(!number) return false
+  return state.identifiersToNumber[pId] !== number
+}
 
 const defaultFilterValues = {color:null, style:null, variant:null, size:null}
 export const getFilterValues = (state:State,pId:Identifier):FilterValues => state.filters[pId]
@@ -44,7 +48,7 @@ export const getFilteredArticles:(state:State,pId:Identifier)=>Article[] = creat
   }
 )((_,pId) => pId)
 
-export const getDisplayArticle = (state:State,pId:Identifier):Article => getFilteredArticles(state,pId)[0] || demoArticle
+export const getDisplayArticle = (state:State,pId:Identifier):Article|null => getFilteredArticles(state,pId)[0] || null
 
 export const getFilter:(state:State,pId:Identifier,filterKey:FilterKey) => Filter = createReSelector(
   getUnfilteredArticles,

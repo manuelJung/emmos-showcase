@@ -1,19 +1,14 @@
 // @flow
 import * as at from './const'
-import {shouldFetch} from './selectors'
+import {shouldFetch, shouldCreate} from './selectors'
 import type {RootState} from 'store/reducers'
 import * as api from './utils/api'
 
 import type {Article, FilterKey, Filter, FilterOption, Identifier, Number} from './entities'
 
-export type FetchProductRequestAction = {
-  type: typeof at.FETCH_REQUEST,
-  meta: { number: Number, identifier: Identifier}
-}
-
 export type FetchProductSuccessAction = {
   type: typeof at.FETCH_SUCCESS,
-  meta: { number: Number, identifier: Identifier},
+  meta: { number: Number, identifier: Identifier, translateFilters: boolean },
   payload: Article[]
 }
 
@@ -31,13 +26,12 @@ export type SetFilterValueAction = {
 
 export type CreateProductAction = {
   type: typeof at.CREATE_PRODUCT,
-  meta: {number:Number, override:boolean, createFilters:boolean},
+  meta: { number:Number, identifier:Identifier, fetching:boolean, translateFilters: boolean },
   payload: string
 }
 
 export type Action = 
-  FetchProductRequestAction
-  | FetchProductSuccessAction
+  FetchProductSuccessAction
   | FetchProductFailureAction
   | SetFilterValueAction
   | CreateProductAction
@@ -49,31 +43,36 @@ export const setFilterValue = (filter:Filter, filterKey:FilterKey, filterOption:
   payload: filterOption
 })
 
-const fetchProduct = (number:Number, identifier:Identifier) => dispatch => {
-  const meta = {number, identifier}
-  dispatch(({ 
-    type: at.FETCH_REQUEST, 
-    meta 
-  }:FetchProductRequestAction))
-  
-  return api.fetchProduct(number).then(
-    payload => dispatch(({ type: at.FETCH_SUCCESS, meta, payload }:FetchProductSuccessAction)),
-    error => dispatch(({ type: at.FETCH_FAILURE, meta, payload: error.toString() }:FetchProductFailureAction))
-  )
-}
+const fetchSuccess = (number:Number, identifier:Identifier, result:Article[], translateFilters:boolean):FetchProductSuccessAction => ({
+  type: at.FETCH_SUCCESS,
+  meta: { number, identifier, translateFilters },
+  payload: result
+})
 
-export const createProduct = (number:Number, identifier:Identifier, override:boolean=true) => 
+const fetchFailure = (number:Number, identifier:Identifier, error:string):FetchProductFailureAction => ({
+  type: at.FETCH_FAILURE,
+  meta: { number, identifier },
+  payload: error
+})
+
+export const createProduct = (number:Number, identifier:Identifier, translateFilters?:boolean) => 
   (dispatch:Function, getState:Function) => {
     const state:RootState = getState()
-    const articlesExist = shouldFetch(state.products, identifier)
+    if(!shouldCreate(state.products, identifier, number)) return Promise.resolve()
+    
+    const fetching = shouldFetch(state.products, identifier)
 
     dispatch(({
       type: at.CREATE_PRODUCT,
-      meta: {number, override, createFilters: articlesExist},
+      meta: { number, identifier, fetching, translateFilters: !fetching && !!translateFilters },
       payload: identifier
     }:CreateProductAction))
 
-    if(!articlesExist){
-      dispatch(fetchProduct(number, identifier))
+    if(fetching){
+      return api.fetchProduct(number).then(
+        payload => dispatch(fetchSuccess(number, identifier, payload, !!translateFilters)),
+        error => dispatch(fetchFailure(number, identifier, error.toString()))
+      )
     }
+    else return Promise.resolve()
   }

@@ -21,20 +21,39 @@ export const defaultState = {
   identifiersToNumber: {}
 }
 
+const defaultFilterValues:FilterValues = {
+  color: null,
+  style: null,
+  size: null,
+  variant: null
+}
+
 export default function reducer(state:State=defaultState, action:Action):State {
   switch(action.type){
-    case at.FETCH_REQUEST: {
-      return {
-        ...state, 
-        fetching: {
-          ...state.fetching,
-          [action.meta.number]: true
+    case at.CREATE_PRODUCT: {
+      const {number, identifier, fetching, translateFilters} = action.meta
+      let newState = {
+        ...state,
+        identifiersToNumber: {
+          ...state.identifiersToNumber,
+          [identifier]: number
         },
-        fetchErrors: {
-          ...state.fetchErrors,
-          [action.meta.number]: null
+        filters: {
+          ...state.filters,
+          [identifier]: defaultFilterValues
         }
       }
+      if(fetching){
+        newState.fetching = {
+          ...state.fetching,
+          [number]: true
+        }
+      }
+      if(translateFilters){
+        // $FlowFixMe
+        newState.filters[identifier] = getFiltersFromArticle(state, number)
+      }
+      return newState
     }
 
     case at.FETCH_FAILURE: {
@@ -54,7 +73,7 @@ export default function reducer(state:State=defaultState, action:Action):State {
     case at.FETCH_SUCCESS: {
       const productNumber = action.payload[0].productNumber
       const ordernumbers = action.payload.map(art => art.ordernumber)
-      const {number, identifier} = action.meta
+      const {number, identifier, translateFilters} = action.meta
       const newState = {
         ...state, 
         fetching: {
@@ -71,27 +90,10 @@ export default function reducer(state:State=defaultState, action:Action):State {
           [productNumber]: action.payload
         }
       }
-      return {
-        ...newState,
-        filters: {
+      if(translateFilters){
+        newState.filters = {
           ...newState.filters,
           [identifier]: getFiltersFromArticle(newState, number)
-        }
-      }
-    }
-
-    case at.CREATE_PRODUCT: {
-      const newState = { ...state,
-        identifiersToNumber: {
-          ...state.identifiersToNumber,
-          [action.payload]: action.meta.number
-        }
-      }
-      if(action.meta.createFilters){
-        const {number} = action.meta
-        newState.filters = {
-          ...state.filters,
-          [action.payload]: getFiltersFromArticle(state, number)
         }
       }
       return newState
@@ -125,10 +127,9 @@ export default function reducer(state:State=defaultState, action:Action):State {
 
 // helpers
 function getFiltersFromArticle (state:State, number:Number) {
-  const defaultFilters = {color:null, variant:null,style:null,size:null}
   const pNumber = state.numberToProductNumber[number]
-  if(!pNumber) return defaultFilters
+  if(!pNumber) return defaultFilterValues
   const article = state.articles[pNumber].find(art => art.ordernumber === number)
-  if(!article) return defaultFilters
-  else return Object.assign(defaultFilters, article.filterValues)
+  if(!article) return defaultFilterValues
+  else return Object.assign(defaultFilterValues, article.filterValues)
 }
