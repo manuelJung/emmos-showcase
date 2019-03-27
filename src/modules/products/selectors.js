@@ -54,15 +54,12 @@ export const getFilter:(state:State,pId:Identifier,filterKey:FilterKey) => Filte
   getFilterValues,
   (_,pId:Identifier) => pId,
   (_,__,filterKey:FilterKey) => filterKey,
-  (articles, filterValues, pId, filterKey):Filter => {
-    const options = calcFilterOptions(articles, filterKey, filterValues)
-    return {
-      options,
-      value: filterValues ? filterValues[filterKey] : null,
-      key: filterKey,
-      type: calcFilterType(options),
-      identifier: pId
-    }
+  (articles, filterValues, identifier, key):Filter => {
+    const options = calcFilterOptions(articles, key, filterValues)
+    const type = calcFilterType(options)
+    let value = filterValues ? filterValues[key] : null
+    if(type === 'TEXT') value = options[0].value
+    return { options, value, key, type, identifier }
   }
 )((_,pId,filterKey) => `${pId}:${filterKey}`)
 

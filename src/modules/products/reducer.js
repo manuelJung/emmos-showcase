@@ -100,7 +100,7 @@ export default function reducer(state:State=defaultState, action:Action):State {
     }
 
     case at.SET_FILTER_VALUE: {
-      const {filter, filterKey} = action.meta
+      const {filter} = action.meta
       const newState = {...state}
 
       if(action.payload && !action.payload.selectable){
@@ -115,7 +115,7 @@ export default function reducer(state:State=defaultState, action:Action):State {
         ...newState.filters,
         [filter.identifier]: {
           ...newState.filters[filter.identifier],
-          [filterKey]: action.payload
+          [filter.key]: action.payload
         }
       }
       return newState
