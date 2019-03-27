@@ -4,7 +4,6 @@ import createReSelector from 're-reselect'
 import calcFilterOptions from './utils/calcFilterOptions'
 
 import type {State} from './reducer'
-import demoArticle from './utils/demoArticle'
 import type {Article, Filter, FilterKey, ProductNumber, Identifier, Number, FilterOption, FilterValues} from './entities'
 
 
@@ -13,7 +12,7 @@ export const getFetchError = (state:State, pId:Identifier):string|null => state.
 export const shouldFetch = (state:State,pId:Identifier):boolean => {
   const number = state.identifiersToNumber[pId]
   const productNumber = state.numberToProductNumber[number]
-  return Boolean(state.articles[productNumber])
+  return !state.articles[productNumber]
 }
 export const shouldCreate = (state:State,pId:Identifier, number?:Number) => {
   if(!number) return false

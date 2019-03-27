@@ -71,7 +71,7 @@ export default function reducer(state:State=defaultState, action:Action):State {
     }
 
     case at.FETCH_SUCCESS: {
-      const productNumber = action.payload[0].productNumber
+      const productNumber = action.payload[0] ? action.payload[0].productNumber : 'not-found'
       const ordernumbers = action.payload.map(art => art.ordernumber)
       const {number, identifier, translateFilters} = action.meta
       const newState = {
