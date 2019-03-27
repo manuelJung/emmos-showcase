@@ -1,0 +1,62 @@
+{
+  "V": {
+    "config": {
+      "variants_endpoint": "https:\/\/www.vega-direct.com\/de-de\/widgets\/Variants\/?ordernumber=",
+      "container_endpoint": "https:\/\/www.vega-direct.com\/de-de\/widgets\/Variants\/container\/ordernumber\/",
+      "cdn_domain": "cdn.vega-direct.com",
+      "locale": "de-DE",
+      "currency_ISO": "EUR",
+      "currency_symbol": "&euro;",
+      "currency_position": "0",
+      "shop_id": "1"
+    },
+    "translations": {
+      "AvailableSizes": "(in [SIZES] Gr\u00f6\u00dfen erh\u00e4ltlich)",
+      "Only": "nur",
+      "PerPiece": "pro St\u00fcck",
+      "New": "NEW",
+      "VolumeDiscount": "Mengenrabatt",
+      "Series": "SERIE"
+    }
+  },
+  "H": {
+    "config": {
+      "variants_endpoint": "https:\/\/www.hotelwaesche.de\/widgets\/Variants\/?ordernumber=",
+      "container_endpoint": "https:\/\/www.hotelwaesche.de\/widgets\/Variants\/container\/ordernumber\/",
+      "cdn_domain": "cdn.hotelwaesche.de",
+      "locale": "de-DE",
+      "currency_ISO": "EUR",
+      "currency_symbol": "&euro;",
+      "currency_position": "0",
+      "shop_id": "1"
+    },
+    "translations": {
+      "AvailableSizes": "(in [SIZES] Gr\u00f6\u00dfe(n) erh\u00e4ltlich)",
+      "Only": "nur",
+      "PerPiece": "pro St\u00fcck",
+      "New": "NEU",
+      "VolumeDiscount": "Mengenrabatt",
+      "Series": "SERIE"
+    }
+  },
+  "J": {
+    "config": {
+      "variants_endpoint": "https:\/\/www.jobeline.de\/widgets\/Variants\/?ordernumber=",
+      "container_endpoint": "https:\/\/www.jobeline.de\/widgets\/Variants\/container\/ordernumber\/",
+      "cdn_domain": "cdn.jobeline.de",
+      "locale": "de-DE",
+      "currency_ISO": "EUR",
+      "currency_symbol": "&euro;",
+      "currency_position": "0",
+      "shop_id": "14"
+    },
+    "translations": {
+      "AvailableSizes": "(in [SIZES] Gr\u00f6\u00dfe(n) erh\u00e4ltlich)",
+      "Only": "nur",
+      "PerPiece": "pro St\u00fcck",
+      "New": "NEU",
+      "VolumeDiscount": "Mengenrabatt",
+      "Series": "SERIE"
+    }
+  } 
+}

@@ -1,0 +1,170 @@
+{
+  "vega": {
+    "texts": {
+      "linkColor": "#2a4c85",
+      "reducedColor": "#d51317",
+      "accentColor": "#2a4c85"
+    },
+    "borders": {
+      "color": "#2a4c85"
+    },
+    "boxes": {
+      "imgReductionBox": {
+        "bgColor": "#2a4c85"
+      },
+      "questionsBox": {
+        "linkColor": "#2a4c85",
+        "bgColor": "#f4f6f9"
+      }
+    },
+    "buttons": {
+      "main": {
+        "bgColor": "#2a4c85",
+        "textColor": "#fff",
+        "bgColorHover": "#E0E4E7",
+        "textColorHover": "#000",
+        "borderRadius": "0"
+      },
+      "cart": {
+        "bgColor": "#ea8f03",
+        "textColor": "#fff",
+        "bgColorHover": "#e28800",
+        "textColorHover": "#fff",
+        "borderRadius": "0"
+      },
+      "series": {
+        "bgColor": "#2a4c85",
+        "textColor": "#fff",
+        "bgColorHover": "#E0E4E7",
+        "textColorHover": "#000",
+        "borderRadius": "0"
+      }
+    }
+  },
+  "pulsiva2017": {
+    "texts": {
+      "linkColor": "#000",
+      "reducedColor": "#e30613",
+      "accentColor": "#feeb35"
+    },
+    "borders": {
+      "color": "#000"
+    },
+    "boxes": {
+      "imgReductionBox": {
+        "bgColor": "#e30613"
+      },
+      "questionsBox": {
+        "linkColor": "#000",
+        "bgColor": "#f4f6f9"
+      }
+    },
+    "buttons": {
+      "main": {
+        "bgColor": "#feeb35",
+        "textColor": "#000",
+        "bgColorHover": "#e0cd1e",
+        "textColorHover": "#000",
+        "borderRadius": "8px"
+      },
+      "cart": {
+        "bgColor": "#feeb35",
+        "textColor": "#000",
+        "bgColorHover": "#e0cd1e",
+        "textColorHover": "#000",
+        "borderRadius": "8px"
+      },
+      "series": {
+        "bgColor": "#000",
+        "textColor": "#fff",
+        "bgColorHover": "#000",
+        "textColorHover": "#fff",
+        "borderRadius": "8px"
+      }
+    }
+  },
+  "jobeline": {
+    "texts": {
+      "linkColor": "#000",
+      "reducedColor": "#d25478",
+      "accentColor": "#b32957"
+    },
+    "borders": {
+      "color": "#000"
+    },
+    "boxes": {
+      "imgReductionBox": {
+        "bgColor": "#000000"
+      },
+      "questionsBox": {
+        "linkColor": "#000000",
+        "bgColor": "#f4f6f9"
+      }
+    },
+    "buttons": {
+      "main": {
+        "bgColor": "#000",
+        "textColor": "#fff",
+        "bgColorHover": "#E0E4E7",
+        "textColorHover": "#000",
+        "borderRadius": "0"
+      },
+      "cart": {
+        "bgColor": "#b32957",
+        "textColor": "#fff",
+        "bgColorHover": "#aa1d4c",
+        "textColorHover": "#fff",
+        "borderRadius": "0"
+      },
+      "series": {
+        "bgColor": "#b32957",
+        "textColor": "#fff",
+        "bgColorHover": "#aa1d4c",
+        "textColorHover": "#fff",
+        "borderRadius": "0"
+      }
+    }
+  },
+  "hotelwaesche": {
+    "texts": {
+      "linkColor": "#0078bd",
+      "reducedColor": "#e84e0f",
+      "accentColor": "#a63f52"
+    },
+    "borders": {
+      "color": "#0078bd"
+    },
+    "boxes": {
+      "imgReductionBox": {
+        "bgColor": "#0078bd"
+      },
+      "questionsBox": {
+        "linkColor": "#0078bd",
+        "bgColor": "#f4f6f9"
+      }
+    },
+    "buttons": {
+      "main": {
+        "bgColor": "#0076bd",
+        "textColor": "#fff",
+        "bgColorHover": "#0268a5",
+        "textColorHover": "#fff",
+        "borderRadius": "0"
+      },
+      "cart": {
+        "bgColor": "#a63f52",
+        "textColor": "#fff",
+        "bgColorHover": "#9c3a4d",
+        "textColorHover": "#fff",
+        "borderRadius": "0"
+      },
+      "series": {
+        "bgColor": "#0076bd",
+        "textColor": "#fff",
+        "bgColorHover": "#0268a5",
+        "textColorHover": "#fff",
+        "borderRadius": "0"
+      }
+    }
+  }
+}
