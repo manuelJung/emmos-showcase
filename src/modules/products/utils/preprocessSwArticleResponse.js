@@ -126,8 +126,8 @@ export default function preprocessSwArticleResponse(swData:any) {
 
   const result = swData.articles
     .filter(row => row.attributes.core.is_master_article === '0') // only true skus
-    .filter(row => calcActiveStatus(row.attributes.core.emgroup_active)) // only active
-    .filter(row => row.prices.map(price => price.calculatedPrice)[0] !== 10000) // filter 10.000€
+    // .filter(row => calcActiveStatus(row.attributes.core.emgroup_active)) // only active
+    // .filter(row => row.prices.map(price => price.calculatedPrice)[0] !== 10000) // filter 10.000€
     .map((row, index, array) => {
       let tailorSizes = {},
         attr = getAttributes(row),

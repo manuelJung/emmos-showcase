@@ -20,8 +20,8 @@ app.use(allowCrossDomain())
 
 app.get('/variants/:productNumber', function(req, res){
   var { productNumber } = req.params
-  console.log('variants', productNumber) // eslint-disable-line
   var link = 'http://vega-direct.com/widgets/Variants/?ordernumber='
+  console.log('variants', link + productNumber) // eslint-disable-line
   
   var options = {
     method: 'GET',
@@ -44,8 +44,8 @@ app.get('/variants/:productNumber', function(req, res){
 
 app.get('/container/:ordernumber', function(req, res){
   var { ordernumber } = req.params
-  console.log('container', ordernumber) // eslint-disable-line
   var link = 'http://vega-direct.com/widgets/Variants/container/ordernumber/'
+  console.log('container', link + ordernumber) // eslint-disable-line
 
   var options = {
     method: 'GET',

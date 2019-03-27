@@ -4,7 +4,7 @@ import createReSelector from 're-reselect'
 import calcFilterOptions from './utils/calcFilterOptions'
 
 import type {State} from './reducer'
-import type {Article, Filter, FilterKey, ProductNumber, Identifier, Number, FilterOption, FilterValues} from './entities'
+import type {Article, Filter, FilterKey, Identifier, Number, FilterOption, FilterValues} from './entities'
 
 
 export const isFetching = (state:State, pId:Identifier):boolean => state.fetching[state.identifiersToNumber[pId]] || false
