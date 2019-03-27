@@ -29,6 +29,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "flow-bin": "^0.95.1"
+    "express": "^4.16.4",
+    "flow-bin": "^0.95.1",
+    "request-promise": "^4.2.4"
   }
 }
