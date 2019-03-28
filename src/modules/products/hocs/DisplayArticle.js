@@ -21,7 +21,8 @@ type InjectedProps = {
 
 type OwnProps = {
   identifier: Identifier,
-  number?: Number
+  number?: Number,
+  noFilters?: boolean // if not set and number is a ordernumber, all filters of ordernumber are applied to product
 }
 
 export type PageProps = OwnProps & InjectedProps
@@ -39,7 +40,7 @@ const mergeProps = (sp, dp, props) => Object.assign({}, props, {
   displayArticle: Object.assign({}, sp, {
     create: () => {
       if(!props.number) return
-      dp.create(props.number, props.identifier)
+      dp.create(props.number, props.identifier, !props.noFilters)
     },
     setActiveArticle: (number:Number) => dp.setActiveArticle(props.identifier, number)
   })
