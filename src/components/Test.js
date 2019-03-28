@@ -8,11 +8,19 @@ import Attributes from 'modules/products/hocs/Attributes'
 export default function () {
   return (
     <div>
-      <DisplayArticle identifier='article' number='30000006' children={product => {
-        console.log('product', product)
-        return null
+      <DisplayArticle pure identifier='article' number='30000006' children={product => {
+        if(product.shouldCreate || product.isFetching){
+          return <div>loading...</div>
+        }
+        if(product.fetchError){
+          return <div>error</div>
+        }
+        if(!product.data){
+          return <div>product not found</div>
+        }
+        return <div>{product.data.productNumber}</div>
       }}/>
-      <Filter identifier='article' filterKey='variant' children={filter => {
+      <Filter identifier='article' filterKey='size' children={filter => {
         console.log('filter', filter)
         return null
       }}/>

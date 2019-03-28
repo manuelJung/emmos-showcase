@@ -8,14 +8,18 @@ import {getDisplayPrice} from '../selectors'
 
 type InjectedProps = {
   attributes: {
-    displayPrice: number
+    displayPrice: number,
+    attr1:mixed,
+    attr2:mixed
   }
 }
 
 
 type OwnProps = {
   identifier: Identifier,
-  displayPrice?: boolean
+  displayPrice?: boolean,
+  attr1?:boolean,
+  attr2?:boolean
 }
 
 export type PageProps = OwnProps & InjectedProps
