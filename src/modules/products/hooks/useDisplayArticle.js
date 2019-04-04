@@ -16,7 +16,7 @@ export type InjectedProps = {
   isFetching: boolean,
   fetchError: null | string,
   shouldCreate: boolean,
-  setActiveArticle: (number:Number) => mixed,
+  setActiveArticle: (number:t.Number) => mixed,
   create: () => void // autocalled
 }
 
@@ -37,7 +37,7 @@ const mergeProps = (sp,dp,props) => Object.assign({}, sp, {
     if(!props.number) return
     dp.create(props.number, props.identifier, !!props.preselect)
   },
-  setActiveArticle: (number:Number) => dp.setActiveArticle(props.identifier, number)
+  setActiveArticle: (number:t.Number) => dp.setActiveArticle(props.identifier, number)
 })
 
 const options = { areStatesEqual: (a,b) => a.products === b.products }
@@ -46,7 +46,7 @@ export default function useDisplayArticle(props:Props):InjectedProps{
   const hook = useConnect<Props, InjectedProps,*,*>(props, mapState, mapDispatch, mergeProps, options)
 
   React.useEffect(() => {
-    props.shouldCreate && props.create()
+    hook.shouldCreate && hook.create()
   })
 
   return hook
