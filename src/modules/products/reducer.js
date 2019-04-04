@@ -115,7 +115,7 @@ export default function reducer(state:State=defaultState, action:Action):State {
         ...newState.filters,
         [filter.identifier]: {
           ...newState.filters[filter.identifier],
-          [filter.key]: action.payload
+          [filter.key]: action.payload ? action.payload.value : null
         }
       }
       return newState
@@ -141,5 +141,5 @@ function getFiltersFromArticle (state:State, number:Number) {
   if(!pNumber) return defaultFilterValues
   const article = state.articles[pNumber].find(art => art.ordernumber === number)
   if(!article) return defaultFilterValues
-  else return Object.assign(defaultFilterValues, article.filterValues)
+  else return Object.assign({}, defaultFilterValues, article.filterValues)
 }

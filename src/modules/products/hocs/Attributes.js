@@ -22,7 +22,7 @@ type OwnProps = {
   attr2?:boolean
 }
 
-export type PageProps = OwnProps & InjectedProps
+export type AttributesProps = OwnProps & InjectedProps
 
 const mapState = (state, props) => {
   let result = {}
@@ -51,12 +51,10 @@ const options = {
 export const hoc = /*:: <Config:InjectedProps>*/(Comp/*:: :React.AbstractComponent<Config> */) /*:: : React.AbstractComponent<$Diff<Config, $Shape<InjectedProps>>>*/ => // $FlowFixMe
 connect/*:: <Config&InjectedProps, OwnProps, _, _, State, Dispatch>*/(mapState,mapDispatch,mergeProps,options)(Comp)
 
-export default hoc(class AttributesRenderer extends React.Component<OwnProps&InjectedProps&{
+export default hoc(function AttributesRenderer (props:OwnProps&InjectedProps&{
   pure?:boolean,
   children?:(props:$PropertyType<InjectedProps,"attributes">)=>React.Node
-}> {
-  render(){
-    const {children, attributes} = this.props
-    return children ? children(attributes) : null
-  }
+}){
+  const {children, attributes} = props
+  return children ? children(attributes) : null
 })

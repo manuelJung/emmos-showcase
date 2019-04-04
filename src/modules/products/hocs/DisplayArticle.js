@@ -22,10 +22,10 @@ type InjectedProps = {
 type OwnProps = {
   identifier: Identifier,
   number?: Number,
-  noFilters?: boolean // if not set and number is a ordernumber, all filters of ordernumber are applied to product
+  preselect?:boolean, // true if number should be preselected
 }
 
-export type PageProps = OwnProps & InjectedProps
+export type DisplayArticleProps = OwnProps & InjectedProps
 
 const mapState = (state, props) => ({
   data: getDisplayArticle(state.products, props.identifier),
@@ -40,7 +40,7 @@ const mergeProps = (sp, dp, props) => Object.assign({}, props, {
   displayArticle: Object.assign({}, sp, {
     create: () => {
       if(!props.number) return
-      dp.create(props.number, props.identifier, !props.noFilters)
+      dp.create(props.number, props.identifier, !!props.preselect)
     },
     setActiveArticle: (number:Number) => dp.setActiveArticle(props.identifier, number)
   })
@@ -61,15 +61,14 @@ const options = {
 export const hoc = /*:: <Config:InjectedProps>*/(Comp/*:: :React.AbstractComponent<Config> */) /*:: : React.AbstractComponent<$Diff<Config, $Shape<InjectedProps>>>*/ => // $FlowFixMe
 connect/*:: <Config&InjectedProps, OwnProps, _, _, State, Dispatch>*/(mapState,mapDispatch,mergeProps,options)(Comp)
 
-export default hoc(class DisplayArticleRenderer extends React.Component<OwnProps&InjectedProps&{
+
+export default hoc(function DisplayArticleRenderer (props:OwnProps&InjectedProps&{
   pure?:boolean,
   children?:(props:$PropertyType<InjectedProps,"displayArticle">)=>React.Node
-}> {
-  create = () => this.props.displayArticle.shouldCreate && this.props.displayArticle.create()
-  componentDidMount = this.create
-  componentDidUpdate = this.create
-  render(){
-    const {children, displayArticle} = this.props
-    return children ? children(displayArticle) : null
-  }
+}){
+  React.useEffect(() => {
+    props.displayArticle.shouldCreate && props.displayArticle.create()
+  })
+  const {children, displayArticle} = props
+  return children ? children(displayArticle) : null
 })

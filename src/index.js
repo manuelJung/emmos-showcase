@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import createStore from 'store/createStore'
+import {store} from 'store/bootstrap'
 
-ReactDOM.render(<App store={createStore()} />, document.getElementById('root'));
+ReactDOM.render(<App store={store} />, document.getElementById('root'));
 

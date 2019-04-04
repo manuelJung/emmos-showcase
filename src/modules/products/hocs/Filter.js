@@ -22,7 +22,7 @@ type OwnProps = {
   filterKey: FilterKey
 }
 
-export type PageProps = OwnProps & InjectedProps
+export type FilterProps = OwnProps & InjectedProps
 
 const mapState = (state, props) => ({
   data: getFilter(state.products, props.identifier, props.filterKey),
@@ -55,12 +55,11 @@ const options = {
 export const hoc = /*:: <Config:InjectedProps>*/(Comp/*:: :React.AbstractComponent<Config> */) /*:: : React.AbstractComponent<$Diff<Config, $Shape<InjectedProps>>>*/ => // $FlowFixMe
 connect/*:: <Config&InjectedProps, OwnProps, _, _, State, Dispatch>*/(mapState,mapDispatch,mergeProps,options)(Comp)
 
-export default hoc(class FilterRenderer extends React.Component<OwnProps&InjectedProps&{
+
+export default hoc(function FilterRenderer (props:OwnProps&InjectedProps&{
   pure?:boolean,
   children?:(props:$PropertyType<InjectedProps,"filter">)=>React.Node
-}> {
-  render(){
-    const {children, filter} = this.props
-    return children ? children(filter) : null
-  }
+}){
+  const {children, filter} = props
+  return children ? children(filter) : null
 })

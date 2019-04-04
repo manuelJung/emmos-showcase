@@ -16,10 +16,9 @@ export default function calcFilterOptions (articles:Article[], filterKey:FilterK
   }
 
   const result = articles
-    // .filter(simple => simple.filterValues[filterKey].label)
-    .map(({filterValues}) => ({
+    .map(({filterValues, sale}) => ({
       selectable: !Object.keys(filterValues).find(filterKey => !isSelectable(filterKey, filterValues)),
-      sale: false,
+      sale,
       value: filterValues[filterKey]
     }))
     .reduce((result, next) => {

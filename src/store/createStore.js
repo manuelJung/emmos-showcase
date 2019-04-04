@@ -5,7 +5,13 @@ import thunkMiddleware from 'redux-thunk'
 
 import type {RootState, Action, Dispatch} from './reducers'
 
-export default (initialState:any = {}) => {
+export type Store = {
+  getState: () => RootState,
+  dispatch: Dispatch,
+  subscribe: (() => mixed) => () => mixed
+}
+
+export default (initialState:any = {}):Store => {
   // ======================================================
   // Middleware Configuration
   // ======================================================
