@@ -35,7 +35,9 @@ export default React.memo<Props>(function DropdownFilter({identifier, filterKey,
               }}
             />
           ))}
-          <Option onClick={() => $filter.clear()}>{label}: Bitte wählen</Option>
+          <Option onClick={() => {$filter.clear(); setOpen(false)}}>
+            {label}: Bitte wählen
+          </Option>
         </ul>
       )}
     </Wrapper>
