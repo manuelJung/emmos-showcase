@@ -20,105 +20,68 @@ export default React.memo<Props>(function ArticleConfig ({identifier, article, c
 
   return (
     <Wrapper className='ArticleConfig'>
-      <Overlay className='overlay' onClick={close} pose={visible ? 'visible' : 'hidden'}/>
-      <Content className='content' pose={visible ? 'visible' : 'hidden'}>
-        <h3>{article.title}</h3>
-        <div className='image-wrapper'>
-          <img src={resize(200,200,article.images[0])}/>
-        </div>
-        <div className='filter-list'>
-          <ColorFilter identifier={identifier}/>
-          <DropdownFilter identifier={identifier} filterKey='size' label='Größe' />
-          <DropdownFilter identifier={identifier} filterKey='variant' label='Variante' />
-          <DropdownFilter identifier={identifier} filterKey='style' label='Stil' />
-        </div>
-        <div className='button-list'>
-          <button className='abort' onClick={close}>Abbrechen</button>
-          <button className='add' onClick={close}>Hinzufügen</button>
-        </div>
-      </Content>
+      <h3>{article.title}</h3>
+      <div className='image-wrapper'>
+        <img src={resize(200,200,article.images[0])}/>
+      </div>
+      <div className='filter-list'>
+        <ColorFilter identifier={identifier}/>
+        <DropdownFilter identifier={identifier} filterKey='size' label='Größe' />
+        <DropdownFilter identifier={identifier} filterKey='variant' label='Variante' />
+        <DropdownFilter identifier={identifier} filterKey='style' label='Stil' />
+      </div>
+      <div className='button-list'>
+        <button className='abort' onClick={close}>Abbrechen</button>
+        <button className='add' onClick={close}>Hinzufügen</button>
+      </div>
     </Wrapper>
   )
 })
 
-const Content = posed.div({
-  hidden: { marginBottom: '-100%' },
-  visible: { marginBottom: '0%' }
-});
-
-const Overlay = posed.div({
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 }
-})
-
 const Wrapper = styled.div`
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 9999999;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
 
-  > .overlay {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,.6);
+  @media (min-width: 600px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    > .image-wrapper, .filter-list {
+      flex-basis: 45%;
+    }
+    > h3, .button-list {
+      flex-basis: 100%;
+    }
   }
 
-  > .content {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 85%;
-    background: white;
-    padding: 10px;
+  > h3 {margin-top: 0;}
+
+  > .image-wrapper {
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+  }
+
+  > .filter-list {
+    > * {margin-bottom: 10px;}
+  }
+
+  > .button-list {
     display: flex;
-    flex-direction: column;
-
-    @media (min-width: 600px) {
-      flex-direction: row;
-      flex-wrap: wrap;
-      > .image-wrapper, .filter-list {
-        flex-basis: 45%;
-      }
-      > h3, .button-list {
-        flex-basis: 100%;
-      }
+    height: 45px;
+    > button {
+      flex: 1;
+      padding: 10px;
+      margin: 5px;
+      color: white;
+      border: none;
+      outline: none !important;
     }
-
-    > h3 {margin-top: 0;}
-
-    > .image-wrapper {
-      margin: 0 auto;
-      width: 200px;
-      height: 200px;
+    > .abort {
+      background: #cd483e;
     }
-
-    > .filter-list {
-      > * {margin-bottom: 10px;}
-    }
-
-    > .button-list {
-      display: flex;
-      height: 45px;
-      > button {
-        flex: 1;
-        padding: 10px;
-        margin: 5px;
-        color: white;
-        border: none;
-        outline: none !important;
-      }
-      > .abort {
-        background: #cd483e;
-      }
-      > .add {
-        background: #2a4c85;
-      }
+    > .add {
+      background: #2a4c85;
     }
   }
 `

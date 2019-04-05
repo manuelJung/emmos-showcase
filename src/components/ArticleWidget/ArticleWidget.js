@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
 import styled from 'styled-components'
+import posed, { PoseGroup } from 'react-pose'
 import useDisplayArticle from 'modules/products/hooks/useDisplayArticle'
 import resize from 'utils/resizeSwImage'
 import ArticleConfig from './ArticleConfig'
@@ -27,9 +28,26 @@ export default React.memo<Props>(function ArticleWidget({number}:Props){
       <button className='btn-config' onClick={() => setShowConfig(true)}>
         Konfigurieren
       </button>
-      {showConfig && <ArticleConfig identifier={number} article={data} close={() => setShowConfig(false)}/>}
+      <PoseGroup>
+        {showConfig && [
+          <Overlay key='overlay' className='overlay' onClick={() => setShowConfig(false)}/>,
+          <Content key='content' className='content'>
+            <ArticleConfig identifier={number} article={data} close={() => setShowConfig(false)}/>
+          </Content>
+        ]}
+      </PoseGroup>
     </Wrapper>
   )
+})
+
+const Content = posed.div({
+  enter: { y: 0, opacity: 1, transition: { type: 'spring', mass: .1 } },
+  exit: { y: '100%', opacity: 0 }
+});
+
+const Overlay = posed.div({
+  enter: { opacity: 1 },
+  exit: { opacity: 0 }
 })
 
 const Wrapper = styled.div`
@@ -59,6 +77,27 @@ const Wrapper = styled.div`
     padding: 10px;
     border: none;
     outline: none !important;
+  }
+
+  .overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.6);
+    z-index: 9999999;
+  }
+
+  .content {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 85%;
+    z-index: 9999999;
+    background: white;
+    overflow-y: scroll;
   }
 
 `
