@@ -34,8 +34,10 @@ const Wrapper = styled.div`
   flex-direction: column;
 
   > h5 {
-    font-size: 20px;
+    font-size: 17px;
     margin: 0;
+    overflow: hidden;
+    height: 43px;
   }
 
   > .image-wrapper {
