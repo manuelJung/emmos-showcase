@@ -73,7 +73,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
 
-    > h3 {margin: 0;}
+    > h3 {margin-top: 0;}
 
     > .image-wrapper {
       align-self: center;
