@@ -35,8 +35,13 @@ export default React.memo<Props>(function ColorFilter({identifier}:Props){
 })
 
 const Wrapper = styled.div`
+  > label {
+    margin-bottom: 5px;
+  }
+
   > .options {
     padding: 0;
+    margin: 0;
     list-style: none;
     display: flex;
     flex-wrap: wrap;
@@ -44,7 +49,7 @@ const Wrapper = styled.div`
 `
 
 const Option = styled.li`
-  margin: 5px;
+  margin: 5px 5px 5px 0;
   padding: 2px;
   width: 40px;
   height: 40px;

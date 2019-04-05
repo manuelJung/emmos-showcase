@@ -70,13 +70,12 @@ const Wrapper = styled.div`
     height: 85%;
     background: white;
     padding: 10px;
-    display: flex;
-    flex-direction: column;
+    overflow-y: scroll;
 
     > h3 {margin-top: 0;}
 
     > .image-wrapper {
-      align-self: center;
+      margin: 0 auto;
       width: 200px;
       height: 200px;
     }
