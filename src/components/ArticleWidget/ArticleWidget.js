@@ -45,9 +45,12 @@ const Wrapper = styled.div`
 
   > .image-wrapper {
     width: 100%;
-    padding: 0;
-    margin: 0;
-    > img {width: 100%;}
+    position: relative
+    padding-bottom: 100%;
+    > img {
+      position: absolute;
+      width: 100%;
+    }
   }
 
   > .btn-config {
