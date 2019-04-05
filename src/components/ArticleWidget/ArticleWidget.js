@@ -3,12 +3,14 @@ import * as React from 'react'
 import styled from 'styled-components'
 import useDisplayArticle from 'modules/products/hooks/useDisplayArticle'
 import resize from 'utils/resizeSwImage'
+import ArticleConfig from './ArticleConfig'
 
 type Props = {
   number: string
 }
 
 export default React.memo<Props>(function ArticleWidget({number}:Props){
+  const [showConfig, setShowConfig] = React.useState(false)
   const $article = useDisplayArticle({number, identifier: number})
   const {isFetching, shouldCreate, fetchError, data} = $article
   
@@ -20,11 +22,12 @@ export default React.memo<Props>(function ArticleWidget({number}:Props){
     <Wrapper className='ArticleWidget'>
       <h5>{data.title}</h5>
       <div className='image-wrapper'>
-        <img src={resize(300,400,data.images[0])}/>
+        <img src={resize(300,300,data.images[0])}/>
       </div>
-      <button className='btn-config'>
+      <button className='btn-config' onClick={() => setShowConfig(true)}>
         Konfigurieren
       </button>
+      {showConfig && <ArticleConfig identifier={number} article={data} close={() => setShowConfig(false)}/>}
     </Wrapper>
   )
 })

@@ -11,6 +11,8 @@ export default function () {
       <ArticleWidget number='10089634' />
       <ArticleWidget number='30003909' />
       <ArticleWidget number='10089624' />
+      <ArticleWidget number='30039895' />
+      <ArticleWidget number='30025913' />
     </Wrapper>
   )
 }
