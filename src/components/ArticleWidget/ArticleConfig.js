@@ -92,6 +92,8 @@ const Wrapper = styled.div`
         padding: 10px;
         margin: 5px;
         color: white;
+        border: none;
+        outline: none !important;
       }
       > .abort {
         background: #cd483e;

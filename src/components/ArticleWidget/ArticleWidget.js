@@ -54,6 +54,8 @@ const Wrapper = styled.div`
     background: #2a4c85;
     color: white;
     padding: 10px;
+    border: none;
+    outline: none !important;
   }
 
 `

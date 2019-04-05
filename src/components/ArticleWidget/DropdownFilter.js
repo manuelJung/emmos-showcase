@@ -15,7 +15,14 @@ export default React.memo<Props>(function DropdownFilter({identifier, filterKey,
   const [open, setOpen] = React.useState(false)
   const selectedLabel = $filter.data.value ? $filter.data.value.label : 'Bitte wählen'
 
-  if($filter.data.type !== 'SELECT') return null
+  if($filter.data.type === 'EMPTY') return null
+  if($filter.data.type === 'TEXT') return (
+    <Wrapper className='DropdownFilter'>
+      <div className='label'>
+        {label}: {selectedLabel}
+      </div>
+    </Wrapper>
+  )
 
   return (
     <Wrapper className='DropdownFilter' open={open}>
