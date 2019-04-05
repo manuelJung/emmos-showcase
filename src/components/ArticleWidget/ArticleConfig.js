@@ -20,7 +20,7 @@ export default React.memo<Props>(function ArticleConfig ({identifier, article, c
 
   return (
     <Wrapper className='ArticleConfig'>
-      <div className='overlay' onClick={close}/>
+      <Overlay className='overlay' onClick={close} pose={visible ? 'visible' : 'hidden'}/>
       <Content className='content' pose={visible ? 'visible' : 'hidden'}>
         <h3>{article.title}</h3>
         <div className='image-wrapper'>
@@ -45,6 +45,11 @@ const Content = posed.div({
   hidden: { marginBottom: '-100%' },
   visible: { marginBottom: '0%' }
 });
+
+const Overlay = posed.div({
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 }
+})
 
 const Wrapper = styled.div`
   position: fixed;
