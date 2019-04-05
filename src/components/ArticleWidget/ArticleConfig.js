@@ -2,7 +2,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import resize from 'utils/resizeSwImage'
-import useFilter from 'modules/products/hooks/useFilter'
 import type {Article} from 'modules/products/entities'
 import posed from 'react-pose'
 import ColorFilter from './ColorFilter'
@@ -15,8 +14,6 @@ type Props = {
 }
 
 export default React.memo<Props>(function ArticleConfig ({identifier, article, close}:Props){
-  const $size = useFilter({identifier, filterKey: 'size'})
-  const $color = useFilter({identifier, filterKey: 'color'})
   const [visible, setVisible] = React.useState(false)
 
   React.useEffect(() => setVisible(true), [])

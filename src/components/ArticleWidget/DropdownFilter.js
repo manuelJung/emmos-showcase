@@ -29,6 +29,7 @@ export default React.memo<Props>(function DropdownFilter({identifier, filterKey,
             <Option
               key={opt.value.label}
               children={opt.value.label}
+              selected={opt.value.label === selectedLabel}
               onClick={() => {
                 $filter.setValue(opt)
                 setOpen(false)
@@ -81,4 +82,9 @@ const Wrapper = styled.div`
 
 const Option = styled.li`
   padding: 10px 5px;
+
+  ${props => props.selected && `
+    background: #2a4c85;
+    color: white;
+  `}
 `
