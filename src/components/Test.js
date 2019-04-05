@@ -26,4 +26,10 @@ const Wrapper = styled.div`
     margin: 3px;
     flex-basis: 45%;
   }
+
+  @media (min-width: 600px){
+    > .ArticleWidget {
+      flex-basis: 30%;
+    }
+  }
 `

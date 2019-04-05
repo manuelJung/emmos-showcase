@@ -71,7 +71,19 @@ const Wrapper = styled.div`
     height: 85%;
     background: white;
     padding: 10px;
-    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 600px) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      > .image-wrapper, .filter-list {
+        flex-basis: 45%;
+      }
+      > h3, .button-list {
+        flex-basis: 100%;
+      }
+    }
 
     > h3 {margin-top: 0;}
 
@@ -87,6 +99,7 @@ const Wrapper = styled.div`
 
     > .button-list {
       display: flex;
+      height: 45px;
       > button {
         flex: 1;
         padding: 10px;
