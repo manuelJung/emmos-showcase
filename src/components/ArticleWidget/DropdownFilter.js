@@ -40,8 +40,8 @@ export default React.memo<Props>(function DropdownFilter({identifier, filterKey,
         {label}: {selectedLabel}
         <div className='chevon'/>
       </div>
+        <PoseGroup animateOnMount preEnterPose='preenter'>
         {open && (
-        <PoseGroup animateOnMount>
           <List key={'dropdown-filter'} className='content'>
             <Option onClick={$filter.clear}>
               {label}: Bitte wählen
@@ -55,8 +55,8 @@ export default React.memo<Props>(function DropdownFilter({identifier, filterKey,
               />
             ))}
           </List>
-        </PoseGroup>
         )}
+        </PoseGroup>
     </Wrapper>
   )
 })
@@ -84,8 +84,9 @@ const Wrapper = styled.div`
 `
 
 const List = styled(posed.ul({
-  enter: { opacity: 1, staggerChildren: 50},
-  exit: {opacity: 0}
+  preenter: { opacity: 0, maxHeight: 0 },
+  enter: { opacity: 1, maxHeight: 300, staggerChildren: 50 },
+  exit: { opacity: 0 }
 }))`
   position: absolute;
   background: white;
@@ -100,8 +101,8 @@ const List = styled(posed.ul({
 `
 
 const Option = styled(posed.li({
-  enter: { opacity: 1 },
-  exit: {opacity: 0}
+  preenter: {opacity: 0},
+  enter: { opacity: 1 }
 }))`
   padding: 10px 5px;
 
