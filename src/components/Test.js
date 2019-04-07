@@ -2,11 +2,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import ArticleWidget from 'components/ArticleWidget'
+import Introduction from 'components/Introduction'
 
 
 export default function () {
   return (
     <Wrapper>
+      <Introduction />
       <ArticleWidget number='10009000' />
       <ArticleWidget number='10089634' />
       <ArticleWidget number='30003909' />
