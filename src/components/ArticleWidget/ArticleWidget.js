@@ -15,9 +15,15 @@ export default React.memo<Props>(function ArticleWidget({number}:Props){
   const $article = useDisplayArticle({number, identifier: number})
   const {isFetching, shouldCreate, fetchError, data} = $article
   
-  if(isFetching || shouldCreate) return <div>loading...</div>
-  if(fetchError) return <div>error</div> 
-  if(!data) return <div>not found</div>
+  if(isFetching || shouldCreate) return (
+    <Wrapper blur className='ArticleWidget'>
+      <h5>lorem ipsum dolor sit amet</h5>
+      <div className='image-wrapper'/>
+      <button className='btn-config'>Konfigurieren</button>
+    </Wrapper>
+  )
+
+  if(fetchError || !data) return null
 
   return (
     <Wrapper className='ArticleWidget'>
@@ -53,6 +59,9 @@ const Overlay = posed.div({
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  ${props => props.blur && `
+    filter: blur(4px);
+  `}
 
   > h5 {
     font-size: 17px;

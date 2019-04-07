@@ -14,9 +14,6 @@ type Props = {
 }
 
 export default React.memo<Props>(function ArticleConfig ({identifier, article, close}:Props){
-  const [visible, setVisible] = React.useState(false)
-
-  React.useEffect(() => setVisible(true), [])
 
   return (
     <Wrapper className='ArticleConfig'>
@@ -39,7 +36,7 @@ export default React.memo<Props>(function ArticleConfig ({identifier, article, c
 })
 
 const Box = posed.div({
-  enter: { x: 0, opacity: 1, transition: { type: 'spring', mass: .4 }},
+  enter: { x: 0, opacity: 1, transition: { type: 'spring', mass: .1 }},
   exit: {x: 300, opacity: 0}
 })
 
