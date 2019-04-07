@@ -7,17 +7,18 @@ import type {FilterKey} from 'modules/products/entities'
 type Props = {
   identifier: string,
   filterKey: FilterKey,
-  label: string
+  label: string,
+  as?: React.Node
 }
 
-export default React.memo<Props>(function DropdownFilter({identifier, filterKey, label}:Props){
+export default React.memo<Props>(function DropdownFilter({identifier, filterKey, label, as}:Props){
   const $filter = useFilter({identifier, filterKey})
   const [open, setOpen] = React.useState(false)
   const selectedLabel = $filter.data.value ? $filter.data.value.label : 'Bitte wählen'
 
   if($filter.data.type === 'EMPTY') return null
   if($filter.data.type === 'TEXT') return (
-    <Wrapper className='DropdownFilter'>
+    <Wrapper as={as} className='DropdownFilter'>
       <div className='label'>
         {label}: {selectedLabel}
       </div>
@@ -25,7 +26,7 @@ export default React.memo<Props>(function DropdownFilter({identifier, filterKey,
   )
 
   return (
-    <Wrapper className='DropdownFilter' open={open}>
+    <Wrapper as={as} className='DropdownFilter' open={open}>
       <div className='label' onClick={() => setOpen(!open)}>
         {label}: {selectedLabel}
         <div className='chevon'/>

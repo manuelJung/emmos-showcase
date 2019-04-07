@@ -41,7 +41,7 @@ export default React.memo<Props>(function ArticleWidget({number}:Props){
 })
 
 const Content = posed.div({
-  enter: { y: 0, opacity: 1, transition: { type: 'spring', mass: .1 } },
+  enter: { y: 0, opacity: 1, staggerChildren: 50, transition: { type: 'spring', mass: .1 } },
   exit: { y: '100%', opacity: 0 }
 });
 

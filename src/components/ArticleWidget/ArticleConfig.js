@@ -21,21 +21,26 @@ export default React.memo<Props>(function ArticleConfig ({identifier, article, c
   return (
     <Wrapper className='ArticleConfig'>
       <h3>{article.title}</h3>
-      <div className='image-wrapper'>
+      <Box className='image-wrapper'>
         <img src={resize(200,200,article.images[0])}/>
-      </div>
+      </Box>
       <div className='filter-list'>
-        <ColorFilter identifier={identifier}/>
-        <DropdownFilter identifier={identifier} filterKey='size' label='Größe' />
-        <DropdownFilter identifier={identifier} filterKey='variant' label='Variante' />
-        <DropdownFilter identifier={identifier} filterKey='style' label='Stil' />
+        <ColorFilter as={Box} identifier={identifier}/>
+        <DropdownFilter as={Box} identifier={identifier} filterKey='size' label='Größe' />
+        <DropdownFilter as={Box} identifier={identifier} filterKey='variant' label='Variante' />
+        <DropdownFilter as={Box} identifier={identifier} filterKey='style' label='Stil' />
       </div>
-      <div className='button-list'>
+      <Box className='button-list'>
         <button className='abort' onClick={close}>Abbrechen</button>
         <button className='add' onClick={close}>Hinzufügen</button>
-      </div>
+      </Box>
     </Wrapper>
   )
+})
+
+const Box = posed.div({
+  enter: { x: 0, opacity: 1, transition: { type: 'spring', mass: .1 }},
+  exit: {x: 300, opacity: 0}
 })
 
 const Wrapper = styled.div`

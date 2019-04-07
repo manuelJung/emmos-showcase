@@ -6,19 +6,20 @@ import resize from 'utils/resizeSwImage'
 import DropdownFilter from './DropdownFilter'
 
 type Props = {
-  identifier: string
+  identifier: string,
+  as?: React.Node
 }
 
-export default React.memo<Props>(function ColorFilter({identifier}:Props){
+export default React.memo<Props>(function ColorFilter({identifier, as}:Props){
   const $filter = useFilter({identifier, filterKey: 'color'})
   const color = $filter.data.value ? $filter.data.value.label : 'bitte wählen'
 
   if($filter.data.type !== 'IMAGE'){
-    return <DropdownFilter identifier={identifier} filterKey='color' label='Farbe'/>
+    return <DropdownFilter as={as} identifier={identifier} filterKey='color' label='Farbe'/>
   }
 
   return (
-    <Wrapper className='ColorFilter'>
+    <Wrapper as={as} className='ColorFilter'>
       <div className='label'>Farbe: {color}</div>
       <ul className='options'>
         {$filter.data.options.map(opt => (
