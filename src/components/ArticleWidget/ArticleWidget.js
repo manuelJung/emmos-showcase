@@ -88,7 +88,7 @@ const Wrapper = styled.div`
     outline: none !important;
   }
 
-  .overlay {
+  > .overlay {
     position: absolute;
     left: 0;
     top: 0;
@@ -98,7 +98,7 @@ const Wrapper = styled.div`
     z-index: 9999999;
   }
 
-  .content {
+  > .content {
     position: fixed;
     left: 0;
     right: 0;
