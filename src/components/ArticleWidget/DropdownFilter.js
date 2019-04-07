@@ -3,7 +3,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import useFilter from 'modules/products/hooks/useFilter'
 import type {FilterKey} from 'modules/products/entities'
-import posed from 'react-pose'
+import posed, { PoseGroup } from 'react-pose'
 
 type Props = {
   identifier: string,
@@ -40,21 +40,23 @@ export default React.memo<Props>(function DropdownFilter({identifier, filterKey,
         {label}: {selectedLabel}
         <div className='chevon'/>
       </div>
-      {open && (
-        <ul className='content'>
-          <Option onClick={$filter.clear}>
-            {label}: Bitte wählen
-          </Option>
-          {$filter.data.options.map(opt => (
-            <Option
-              key={opt.value.label}
-              children={opt.value.label}
-              selected={opt.value.label === selectedLabel}
-              onClick={() => $filter.setValue(opt)}
-            />
-          ))}
-        </ul>
-      )}
+        {open && (
+        <PoseGroup animateOnMount>
+          <List key={'dropdown-filter'} className='content'>
+            <Option onClick={$filter.clear}>
+              {label}: Bitte wählen
+            </Option>
+            {$filter.data.options.map(opt => (
+              <Option
+                key={opt.value.label}
+                children={opt.value.label}
+                selected={opt.value.label === selectedLabel}
+                onClick={() => $filter.setValue(opt)}
+              />
+            ))}
+          </List>
+        </PoseGroup>
+        )}
     </Wrapper>
   )
 })
@@ -79,22 +81,28 @@ const Wrapper = styled.div`
       }
     }
   }
-
-  > .content {
-    position: absolute;
-    background: white;
-    left: 0;
-    right: 0;
-    bottom: 100%;
-    padding: 0;
-    list-style: none;
-    border: 1px solid lightgrey;
-    max-height: 300px;
-    overflow: scroll;
-  }
 `
 
-const Option = styled.li`
+const List = styled(posed.ul({
+  enter: { opacity: 1, staggerChildren: 50},
+  exit: {opacity: 0}
+}))`
+  position: absolute;
+  background: white;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  padding: 0;
+  list-style: none;
+  border: 1px solid lightgrey;
+  max-height: 300px;
+  overflow: scroll;
+`
+
+const Option = styled(posed.li({
+  enter: { opacity: 1 },
+  exit: {opacity: 0}
+}))`
   padding: 10px 5px;
 
   ${props => props.selected && `
