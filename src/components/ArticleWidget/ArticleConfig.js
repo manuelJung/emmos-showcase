@@ -39,7 +39,7 @@ export default React.memo<Props>(function ArticleConfig ({identifier, article, c
 })
 
 const Box = posed.div({
-  enter: { x: 0, opacity: 1, transition: { type: 'spring', mass: .1 }},
+  enter: { x: 0, opacity: 1, transition: { type: 'spring', mass: .4 }},
   exit: {x: 300, opacity: 0}
 })
 
