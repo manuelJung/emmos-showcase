@@ -30,7 +30,7 @@ export default React.memo<Props>(function DropdownFilter({identifier, filterKey,
   React.useEffect(() => {
     const listener = window.addEventListener('click', (e) => {
       e.path.find(el => el === ref.current) || setOpen(false)
-    })
+    }, true)
     return () => window.removeEventListener('click', listener)
   }, [])
 
