@@ -8,41 +8,57 @@ type Props = {}
 export default React.memo<Props>(function Introduction(props:Props){
   const [step, setStep] = React.useState(0)
 
+  if(step > 1) return null
+
   return (
-    <PoseGroup animateOnMount preEnterPose='preenter'>
-      {step === 0 && <Wrapper key='Introduction' className='Introduction'>
-        <Title key='title'>Willkommen zum Konfigurator</Title>
-        <Description key='description'>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor 
-          invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et 
-          accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata 
-          sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing 
-          elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
-          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita 
-          kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        </Description>
-        <div>
-          <NextButton onClick={() => setStep(step+1)}>weiter</NextButton>
-        </div>
-      </Wrapper>}
-      {step > 0 && null}
-    </PoseGroup>
+    <BG>
+
+      <Wrapper key='Introduction' className='Introduction'>
+        <PoseGroup animateOnMount preEnterPose='preenter'>
+          {step === 0 && [
+            <Title key='title'>Willkommen zum Konfigurator</Title>,
+            <Description key='description'>
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor 
+              invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et 
+              accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata 
+              sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing 
+              elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+              sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita 
+              kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            </Description>
+          ]}
+          <div key='btn'>
+            <NextButton onClick={() => setStep(step+1)}>weiter</NextButton>
+          </div>
+        </PoseGroup>
+      </Wrapper>
+
+
+    </BG>
   )
 })
 
-const Wrapper = styled(posed.div({
-  preenter: { y: 50 },
-  enter: { y: 0, opacity: 1, staggerChildren: 100, transition: { type: 'spring', mass: .1 } },
-  exit: { opacity: 0, delay: 100}
-}))`
+const BG = styled.div`
   position: fixed;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
   background: white;
-  background-image: linear-gradient(to bottom, white 0%, #2a4c85 250%);
   z-index: 9999999999999999;
+`
+
+const Wrapper = styled(posed.div({
+  preenter: { y: 50 },
+  enter: { y: 0, opacity: 1, staggerChildren: 100, transition: { type: 'spring', mass: .1 } },
+  exit: { opacity: 0, delay: 100}
+}))`
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(to bottom, white 0%, #2a4c85 250%);
   padding: 10px;
   display: flex;
   flex-direction: column;

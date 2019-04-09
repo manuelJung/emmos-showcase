@@ -5,7 +5,7 @@ import * as a from '../actions'
 import useConnect from 'utils/useConnect'
 
 export type Props = {|
-  identifier: Identifier,
+  identifier: t.Identifier,
   displayPrice?: boolean,
   attr1?:boolean,
   attr2?:boolean
