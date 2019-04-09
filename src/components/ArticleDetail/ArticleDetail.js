@@ -16,12 +16,10 @@ export default React.memo<Props>(function ArticleDetail(){
   const $article = useDisplayArticle({ identifier })
   const show = Boolean($ui.activeProduct)
 
-  if(!$article.data) return null
-
   return (
     <Wrapper className='ArticleDetail'>
       <PoseGroup>
-        {show && [
+        {show && $article.data && [
           <Overlay key='overlay' className='overlay' onClick={() => $ui.setActiveProduct()}/>,
           <Modal key='modal' className='modal'>
             <Detail className='ArticleConfig'>
@@ -49,7 +47,7 @@ export default React.memo<Props>(function ArticleDetail(){
 
 const Modal = posed.div({
   enter: { y: 0, opacity: 1, staggerChildren: 50, transition: { type: 'spring', mass: .1 } },
-  exit: { y: '100%', opacity: 0, delay: 300, staggerChildren: 50, staggerDirection: -1 }
+  exit: { y: 500, opacity: 0, delay: 300, staggerChildren: 50, staggerDirection: -1 }
 });
 
 const Overlay = posed.div({
