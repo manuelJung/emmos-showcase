@@ -20,8 +20,8 @@ export default React.memo<Props>(function ArticleDetail(){
     <Wrapper className='ArticleDetail'>
       <PoseGroup>
         {show && $article.data && [
-          <Overlay key='overlay' className='overlay' onClick={() => $ui.setActiveProduct()}/>,
-          <Modal key='modal' className='modal'>
+          <Overlay key='overlay' className='overlay' onClick={() => $ui.setActiveProduct()}>,
+          <Modal key='modal' className='modal' onClick={e => e.stopPropagation()}>
             <Detail className='ArticleConfig'>
               <h3>{$article.data.title}</h3>
               <Box className='image-wrapper'>
@@ -39,6 +39,7 @@ export default React.memo<Props>(function ArticleDetail(){
               </Box>
             </Detail>
           </Modal>
+          </Overlay>
         ]}
       </PoseGroup>
     </Wrapper>
@@ -47,7 +48,7 @@ export default React.memo<Props>(function ArticleDetail(){
 
 const Modal = posed.div({
   enter: { y: 0, opacity: 1, staggerChildren: 50, transition: { type: 'spring', mass: .1 } },
-  exit: { y: 500, opacity: 0, delay: 300, staggerChildren: 50, staggerDirection: -1 }
+  exit: { y: 500, opacity: 0, delay: 250, staggerChildren: 50, staggerDirection: -1 }
 });
 
 const Overlay = posed.div({
@@ -62,24 +63,23 @@ const Box = posed.div({
 
 const Wrapper = styled.div`
   > .overlay {
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     right: 0;
     bottom: 0;
     background: rgba(0,0,0,.6);
     z-index: 9999999;
-  }
-
-  > .modal {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 85%;
-    z-index: 9999999;
-    background: white;
-    overflow-y: scroll;
+    
+    > .modal {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 85%;
+      background: white;
+      overflow-y: scroll;
+    }
   }
 `
 
