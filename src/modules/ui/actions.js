@@ -4,12 +4,12 @@ import type {Identifier} from 'modules/products/entities'
 
 export type SetActiveProduct = {
   type: typeof at.SET_ACTIVE_PRODUCT,
-  payload: Identifier
+  payload: Identifier | null
 }
 
 export type Action = SetActiveProduct
 
-export const setActiveProduct = (identifier:Identifier):SetActiveProduct => ({
+export const setActiveProduct = (identifier?:Identifier|null):SetActiveProduct => ({
   type: at.SET_ACTIVE_PRODUCT,
-  payload: identifier
+  payload: identifier || null
 })
