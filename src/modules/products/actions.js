@@ -4,7 +4,7 @@ import {shouldFetch, shouldCreate} from './selectors'
 import type {RootState} from 'store/reducers'
 import * as api from './utils/api'
 
-import type {Article, FilterKey, Filter, FilterOption, Identifier, Number} from './entities'
+import type {Article, Filter, FilterOption, Identifier, Number} from './entities'
 
 export type FetchProductSuccessAction = {
   type: typeof at.FETCH_SUCCESS,

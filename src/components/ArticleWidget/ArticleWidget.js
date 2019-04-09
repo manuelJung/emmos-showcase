@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react'
 import styled from 'styled-components'
-import posed, { PoseGroup } from 'react-pose'
 import useDisplayArticle from 'modules/products/hooks/useDisplayArticle'
 import resize from 'utils/resizeSwImage'
 import useUI from 'modules/ui/hooks/useUI'
@@ -29,7 +28,7 @@ export default React.memo<Props>(function ArticleWidget({number}:Props){
     <Wrapper className='ArticleWidget'>
       <h5>{data.title}</h5>
       <div className='image-wrapper'>
-        <img src={resize(300,300,data.images[0])}/>
+        <img alt={data.title} src={resize(300,300,data.images[0])}/>
       </div>
       <button className='btn-config' onClick={() => $ui.setActiveProduct(number)}>
         Konfigurieren

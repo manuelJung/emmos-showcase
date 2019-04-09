@@ -27,7 +27,7 @@ export default React.memo<Props>(function ArticleDetail(){
             <Detail className='ArticleConfig'>
               <h3>{$article.data.title}</h3>
               <Box className='image-wrapper'>
-                <img src={resize(200,200,$article.data.images[0])}/>
+                <img alt={$article.data.title} src={resize(200,200,$article.data.images[0])}/>
               </Box>
               <div className='filter-list'>
                 <ColorFilter as={Box} identifier={identifier}/>

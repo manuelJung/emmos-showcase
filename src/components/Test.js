@@ -2,7 +2,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import ArticleWidget from 'components/ArticleWidget'
-import Introduction from 'components/Introduction'
+// import Introduction from 'components/Introduction'
 import ArticleDetail from 'components/ArticleDetail'
 
 

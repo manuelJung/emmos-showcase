@@ -27,7 +27,7 @@ export default React.memo<Props>(function ColorFilter({identifier, as}:Props){
             key={opt.value.label} 
             onClick={() => $filter.toggleValue(opt)}
             selected={opt.value.label === color}
-            children={<img src={resize(40,40,opt.value.image)}/>}
+            children={<img alt={opt.value.label} src={resize(40,40,opt.value.image)}/>}
           />
         ))}
       </ul>

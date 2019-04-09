@@ -1,7 +1,6 @@
 // @flow
 import * as a from '../actions'
 import useConnect from 'utils/useConnect'
-import type {Identifier} from 'modules/products/entities'
 
 export type Props = {|
   activeProduct?: boolean

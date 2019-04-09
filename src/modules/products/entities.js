@@ -12,12 +12,12 @@ export type FilterKey = 'color' | 'size' | 'variant' | 'style'
 
 export type FilterType = 'EMPTY' | 'SELECT' | 'TEXT' | 'IMAGE'
 
-export type FilterValues = {[filterKey:FilterKey]: FilterValue | null}
-
 export type FilterValue = {|
   label: string,
   image?:string
 |}
+
+export type FilterValues = {[filterKey:FilterKey]: FilterValue | null}
 
 export type FilterOption = {|
   value: FilterValue,
