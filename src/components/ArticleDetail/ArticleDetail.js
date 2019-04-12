@@ -20,7 +20,7 @@ export default React.memo<Props>(function ArticleDetail(){
     <Wrapper className='ArticleDetail'>
       <PoseGroup>
         {show && $article.data && [
-          <Overlay key='overlay' className='overlay' onClick={() => $ui.setActiveProduct()}>,
+          <Overlay key='overlay' className='overlay' onClick={() => $ui.setActiveProduct()}>
           <Modal key='modal' className='modal' onClick={e => e.stopPropagation()}>
             <Detail className='ArticleConfig'>
               <h3>{$article.data.title}</h3>
@@ -28,10 +28,10 @@ export default React.memo<Props>(function ArticleDetail(){
                 <img alt={$article.data.title} src={resize(200,200,$article.data.images[0])}/>
               </Box>
               <div className='filter-list'>
-                <ColorFilter as={Box} identifier={identifier}/>
-                <DropdownFilter as={Box} identifier={identifier} filterKey='size' label='Größe' />
-                <DropdownFilter as={Box} identifier={identifier} filterKey='variant' label='Variante' />
-                <DropdownFilter as={Box} identifier={identifier} filterKey='style' label='Stil' />
+                <ColorFilter key={identifier+'color'} as={Box} identifier={identifier}/>
+                <DropdownFilter key={identifier+'size'} as={Box} identifier={identifier} filterKey='size' label='Größe' />
+                <DropdownFilter key={identifier+'variant'} as={Box} identifier={identifier} filterKey='variant' label='Variante' />
+                <DropdownFilter key={identifier+'style'} as={Box} identifier={identifier} filterKey='style' label='Stil' />
               </div>
               <Box className='button-list'>
                 <button className='abort' onClick={() => $ui.setActiveProduct()}>Abbrechen</button>
@@ -79,6 +79,17 @@ const Wrapper = styled.div`
       height: 85%;
       background: white;
       overflow-y: scroll;
+    }
+  }
+
+  @media (min-width: 1000px){
+    > .overlay { 
+      position: relative;
+      background: none;
+      > .modal {
+        height: 100%;
+        position: relative;
+      }
     }
   }
 `
