@@ -73,8 +73,8 @@ const Wrapper = styled.div`
       right: 0;
       top: 0;
       ${props => props.open 
-        ? `transform: rotate(270deg); border-top: 1px solid lightgrey;`
-        : `transform: rotate(90deg); border-bottom: 1px solid lightgrey;`}
+        ? `transform: rotate(90deg); border-bottom: 1px solid lightgrey;`
+        : `transform: rotate(270deg); border-top: 1px solid lightgrey;`}
       padding: 10px;
       &:after {
         content: '<'
@@ -92,7 +92,7 @@ const List = styled(posed.ul({
   background: white;
   left: 0;
   right: 0;
-  bottom: 100%;
+  top: 100%;
   padding: 0;
   list-style: none;
   border: 1px solid lightgrey;
