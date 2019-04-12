@@ -1,34 +1,35 @@
 // @flow
 import React from 'react'
 import styled from 'styled-components'
-import ArticleWidget from 'components/ArticleWidget'
+import ArticleWidget, {Loading} from 'components/ArticleWidget'
 // import Introduction from 'components/Introduction'
 import ArticleDetail from 'components/ArticleDetail'
 import Container from 'atoms/Container'
+import LazyComponent from 'atoms/LazyComponent'
 
+type Props = {
+  numbers: string[]
+}
 
-export default function () {
+export default function ArticleList (props:Props) {
   return (
-    <Container>
-    <Wrapper>
+    <Wrapper className='ArticleList'>
       {/* <Introduction /> */}
       <div className='left'>
-        <ArticleWidget number='10009000' />
-        <ArticleWidget number='10089634' />
-        <ArticleWidget number='30003909' />
-        <ArticleWidget number='10089624' />
-        <ArticleWidget number='30039895' />
-        <ArticleWidget number='30025913' />
+        {props.numbers.map(n => (
+          <LazyComponent placeholder={<div><Loading/></div>} key={n} defaultHeight={500} offset={300}>
+            <ArticleWidget number={n}/>
+          </LazyComponent>
+        ))}
       </div>
       <div className='right'>
         <ArticleDetail />
       </div>
     </Wrapper>
-    </Container>
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled(Container)`
   display: flex;
 
   > .left {
@@ -36,25 +37,25 @@ const Wrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    > .ArticleWidget {
+    > * {
       margin: 3px;
       flex-basis: 45%;
     }
 
     @media (min-width: 500px){
-      > .ArticleWidget {
+      > * {
         flex-basis: 32%;
       }
     }
 
     @media (min-width: 650px){
-      > .ArticleWidget {
+      > * {
         flex-basis: 23%;
       }
     }
 
     @media (min-width: 1000px){
-      > .ArticleWidget {
+      > * {
         flex-basis: 32%;
       }
     }

@@ -12,8 +12,9 @@ export type State = {
 }
 
 export const defaultState = {
-  articles: defaultConfigurator.reduce((p,n) => (p[n.title]=[]),{}),
-  byId: defaultConfigurator.reduce((p,n) => (p[n.title]=n),{}),
+  articles: defaultConfigurator.reduce((p,n) => (p[n.title]=[]) && p,{}),
+  // byId: defaultConfigurator.reduce((p,n) => (p[n.title]=n),{}),
+  byId: defaultConfigurator.reduce((p,n) => (p[n.title]=n) && p,{}),
   allIds: defaultConfigurator.map(s => s.title),
   step: 0
 }

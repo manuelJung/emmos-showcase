@@ -25,7 +25,7 @@ const mergeProps = (sp,dp,props) => Object.assign({}, sp, dp)
 
 const options = { areStatesEqual: (a,b) => a.configurator === b.configurator }
 
-export default function useStepper(props:Props):$Diff<InjectedProps,{}>{
+export default function useStepper(props?:Props={}):$Diff<InjectedProps,{}>{
   const hook = useConnect<Props, InjectedProps,*,*>(props, mapState, mapDispatch, mergeProps, options)
   return hook
 }

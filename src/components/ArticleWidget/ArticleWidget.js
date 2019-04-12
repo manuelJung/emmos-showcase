@@ -14,13 +14,7 @@ export default React.memo<Props>(function ArticleWidget({number}:Props){
   const $article = useDisplayArticle({number, identifier: number})
   const {isFetching, shouldCreate, fetchError, data} = $article
   
-  if(isFetching || shouldCreate) return (
-    <Wrapper blur className='ArticleWidget'>
-      <h5>lorem ipsum dolor sit amet</h5>
-      <div className='image-wrapper'/>
-      <button className='btn-config'>Konfigurieren</button>
-    </Wrapper>
-  )
+  if(isFetching || shouldCreate) return <Loading/>
 
   if(fetchError || !data) return null
 
@@ -37,7 +31,18 @@ export default React.memo<Props>(function ArticleWidget({number}:Props){
   )
 })
 
+export function Loading () {
+  return (
+    <Wrapper blur className='ArticleWidget'>
+      <h5>lorem ipsum dolor sit amet</h5>
+      <div className='image-wrapper'/>
+      <button className='btn-config'>Konfigurieren</button>
+    </Wrapper>
+  )
+}
+
 const Wrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   ${props => props.blur && `

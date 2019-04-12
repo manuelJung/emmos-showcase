@@ -54,6 +54,6 @@ export default (initialState:any = {}):Store => {
       store.replaceReducer(rootReducer())
     })
   }
-
+  // $FlowFixMe
   return store
 }

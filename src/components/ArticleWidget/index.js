@@ -1,2 +1,2 @@
 // @flow
-export {default} from './ArticleWidget'
+export {default, Loading} from './ArticleWidget'
