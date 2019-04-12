@@ -89,6 +89,7 @@ const Wrapper = styled.div`
       > .modal {
         height: 100%;
         position: relative;
+        overflow-y: unset;
       }
     }
   }
