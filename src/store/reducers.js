@@ -8,12 +8,16 @@ import type {Action as ProductAction} from 'modules/products/actions'
 import uiReducer from 'modules/ui/reducer'
 import type {Action as UIAction} from 'modules/ui/actions'
 
+import configuratorReducer from 'modules/configurator/reducer'
+import type {Action as ConfiguratorAction} from 'modules/configurator/actions'
 
-export type Action = ProductAction | UIAction
+
+export type Action = ProductAction | UIAction | ConfiguratorAction
 
 const reducers = {
   products: productReducer,
-  ui: uiReducer
+  ui: uiReducer,
+  configurator: configuratorReducer
 }
 
 export type Reducers = typeof reducers
