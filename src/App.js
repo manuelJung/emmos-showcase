@@ -22,6 +22,11 @@ export default function App () {
         ))}
       </nav>
       <ArticleList numbers={activeStep.data.articles}/>
+      {activeStep.hasMore && (
+        <div className='show-more'>
+          <button onClick={activeStep.showMore}>Mehr</button>
+        </div>
+      )}
     </Wrapper>
   )
 }
@@ -32,6 +37,20 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     margin-bottom: 30px;
+  }
+
+  > .show-more {
+    display: flex;
+    margin: 20px;
+    align-items: center;
+    justify-content: center;
+    > button {
+      background: #2a4c85;
+      padding: 10px;
+      text-align: center;
+      width: 350px;
+      color: white;
+    }
   }
 `
 

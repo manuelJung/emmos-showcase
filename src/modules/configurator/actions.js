@@ -17,6 +17,10 @@ export type RemoveArticle = {
   payload: t.Identifier
 }
 
+export type ShowMore = {
+  type: typeof at.SHOW_MORE
+}
+
 export type Action = SetStep | AddArticle | RemoveArticle
 
 export const setStep = (step:number):SetStep => ({
@@ -32,4 +36,8 @@ export const addArticle = (identifier:t.Identifier):AddArticle => ({
 export const removeArticle = (identifier:t.Identifier):RemoveArticle => ({
   type: at.REMOVE_ARTICLE,
   payload: identifier
+})
+
+export const showMore = ():ShowMore => ({
+  type: at.SHOW_MORE
 })

@@ -8,17 +8,21 @@ export type Props = {}
 
 export type InjectedProps = {
   data: t.Step,
+  hasMore: boolean,
   addArticle: *,
-  removeArticle: *
+  removeArticle: *,
+  showMore: *
 }
 
 const mapState = (state, props) => ({
-  data: s.getActiveStep(state.configurator)
+  data: s.getFilteredActiveStep(state.configurator),
+  hasMore: s.hasMore(state.configurator)
 })
 
 const mapDispatch = {
   addArticle: a.addArticle,
-  removeArticle: a.removeArticle
+  removeArticle: a.removeArticle,
+  showMore: a.showMore
 }
 
 const mergeProps = (sp,dp,props) => Object.assign({}, sp, dp)
